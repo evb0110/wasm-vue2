@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="large-font">
+      <div>
+        Hello from WebAssembly!
+        <div>Input: {{ input }}</div>
+        <div>Result: {{ result }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {heavyComputation} from "@/services/heavyComputation";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      input: 42,
+      result: 0,
+    };
+  },
+  async mounted() {
+    this.result = await heavyComputation(this.input);
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.large-font {
+  display: flex;
+  justify-content: center;
+  font-size: 5em;
 }
 </style>
