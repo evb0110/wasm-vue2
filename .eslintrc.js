@@ -23,6 +23,7 @@ module.exports = {
         // Add your custom rules here
         'no-unused-vars': 'off',
         'vue/multi-word-component-names': 'off',
+        'no-extra-semi': 'off',
     },
     settings: {
         'import/resolver': {

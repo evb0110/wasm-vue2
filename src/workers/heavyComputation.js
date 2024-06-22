@@ -1,13 +1,11 @@
-import init, { heavy_computation } from '../../public/pkg';
+import { heavy_computation } from 'wasm-rust';
 
 async function initWasm() {
     try {
-        await init('/pkg/wasm1_bg.wasm');  // Initialize the WASM module using the URL
-
         if (heavy_computation) {
             self.onmessage = (event) => {
                 try {
-                    const result = heavy_computation(event.data);
+                    const result = heavy_computation(BigInt(event.data));
                     self.postMessage(result);
                 } catch (e) {
                     self.postMessage({ error: e.message });
